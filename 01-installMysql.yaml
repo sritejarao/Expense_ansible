@@ -2,6 +2,7 @@
   hosts: mysql
   become: yes
   vars:
+    mysql_user: root
     mysql_password: ExpenseApp@1
   tasks:
   - name: Install Mysql server
@@ -25,7 +26,7 @@
 
   - name: Connect to myql server
     community.mysql.mysql_info: ### developed by mysql team 
-      login_user: root
+      login_user: "{{ mysql_user }}"
       login_password: "{{ mysql_password }}"
       login_host: mysql.learnnewthings.site
     register: mysql_info
