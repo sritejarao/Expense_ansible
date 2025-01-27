@@ -1,36 +1,36 @@
--name: Configuring Mysql
- hosts: mysql
- become: yes
- tasks:
-  vars:
+- name: Configuring Mysql
+  hosts: mysql
+  become: yes
+  tasks:
+   vars:
     mysql_password: ExpenseApp@1
 
- - name: Install Mysql server
-  ansible.builtin.package:
-    name: mysql-server
-    state: installed
+  - name: Install Mysql server
+    ansible.builtin.package:
+      name: mysql-server
+      state: installed
 
 
- - name: install mysql librabires
-  ansible.builtin.pip:
-    name: "{{ item }}"
-    executable: pip3.9
-  loop:
-  - PyMsql
+  - name: install mysql librabires
+    ansible.builtin.pip:
+      name: "{{ item }}"
+      executable: pip3.9
+    loop:
+    - PyMsql
 
- - name: Start & enable service
-  ansible.builtin.service:
-    name: mysqld
-    state: started
-    enabled: yes
+  - name: Start & enable service
+    ansible.builtin.service:
+      name: mysqld
+      state: started
+      enabled: yes
 
- - name: Connect to myql server
-  community.mysql.mysql_info: ### developed by mysql team 
-    login_user: root
-    login_password: "{{ mysql_password }}"
-    login_host: mysql.learnnewthings.site
-  register: mysql_info
+  - name: Connect to myql server
+    community.mysql.mysql_info: ### developed by mysql team 
+      login_user: root
+      login_password: "{{ mysql_password }}"
+      login_host: mysql.learnnewthings.site
+    register: mysql_info
 
- - name: print the mysql connection output
-  ansible.builtin.debug:
-    msg: "{{ mysql_info }}"
+  - name: print the mysql connection output
+    ansible.builtin.debug:
+      msg: "{{ mysql_info }}"
