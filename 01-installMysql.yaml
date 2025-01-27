@@ -15,7 +15,7 @@
       name: "{{ item }}"
       executable: pip3.9
     loop:
-    - PyMsql
+    - PyMySql
 
   - name: Start & enable service
     ansible.builtin.service:
