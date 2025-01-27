@@ -17,6 +17,7 @@
       executable: pip3.9
     loop:
     - PyMySql
+    - cryptography
 
   - name: Start & enable service
     ansible.builtin.service:
@@ -37,5 +38,5 @@
       msg: "MySQl info : {{ mysql_info }}"
 
   - name: SetUp root password
-    ansible.builtin.command: mysql_secure_installation --set-root-pass ExpenseApp@1
+    ansible.builtin.command: "mysql_secure_installation --set-root-pass ExpenseApp@1"
     when: mysql_info.failed is true
