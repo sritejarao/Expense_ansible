@@ -2,9 +2,6 @@
   hosts: mysql
   become: yes
   tasks:
-   vars:
-    mysql_password: ExpenseApp@1
-
   - name: Install Mysql server
     ansible.builtin.package:
       name: mysql-server
