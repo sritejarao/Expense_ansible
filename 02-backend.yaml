@@ -1,0 +1,12 @@
+- name: Configure Backend setUp
+  hosts: backend
+  tasks:
+  - name: Disable node js
+    ansible.builtin.dnf:
+      name: nodejs
+      state: absent
+  
+  - name: enable nodejs:20
+    ansible.builtin.dnf:
+      name: nodejs:20
+      state: started
