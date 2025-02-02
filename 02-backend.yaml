@@ -1,5 +1,6 @@
 - name: Configure Backend setUp
   hosts: backend
+  become: yes
   tasks:
   - name: Disable node js
     ansible.builtin.dnf:
