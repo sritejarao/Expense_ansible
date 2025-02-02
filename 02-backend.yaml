@@ -8,6 +8,9 @@
       state: absent
   
   - name: enable nodejs:20
+    ansible.builtin.command: dnf module enable nodejs:20 -y
+    
+  - name: install nodejs
     ansible.builtin.dnf:
-      name: nodejs:20
-      state: started
+      name: nodejs
+      state: present
