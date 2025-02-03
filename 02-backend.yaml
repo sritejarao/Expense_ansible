@@ -1,6 +1,9 @@
 - name: Configure Backend setUp
   hosts: backend
   become: yes
+  vars:
+    mysql_user: root
+    mysql_password: ExpenseApp@1
   tasks:
   - name: Disable node js
     ansible.builtin.dnf:
@@ -18,6 +21,14 @@
     - nodejs
     - mysql
     - npm
+
+  - name: install mysql librabires
+    ansible.builtin.pip:
+      name: "{{ item }}"
+      executable: pip3.9
+    loop:
+    - PyMySql
+    - cryptography
 
   - name: Add user
     ansible.builtin.user:
@@ -63,4 +74,17 @@
       state: started
       enabled: yes
 
- 
+ - name: Import sql package
+   community.mysql.mysql_db:
+    state: import
+    name: all
+    login_user: "{{ mysql_user }}"
+    login_password: "{{ mysql_password }}"
+    login_host: mysql.learnnewthings.site
+    target: /app/schema/backend.sql
+
+  - name: start & enable backend
+    ansible.builtin.service:
+      name: backend
+      state: restarted
+    
