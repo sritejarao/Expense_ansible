@@ -60,7 +60,7 @@
 
   - name: start & enable backend
     systemd:
-      name: dnf-automatic.timer
+      name: backend
       state: started
       enabled: yes
 
