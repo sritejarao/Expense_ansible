@@ -28,7 +28,8 @@
   - name: create a zip file
     ansible.builtin.file:
       path: /tmp/backend.zip
-      dest: /tmp/
+      state: file
+      #dest: /tmp/
       state: touch
 
 
