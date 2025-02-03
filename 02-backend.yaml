@@ -67,10 +67,6 @@
       src: backend.service
       dest: /etc/systemd/system/backend.service
 
-  - name: daemon-reload
-    systemd:
-      daemon_reload: yes
-
   - name: start & enable backend
     systemd:
       name: backend
@@ -90,4 +86,8 @@
     ansible.builtin.service:
       name: backend
       state: restarted
-    
+      enabled: yes
+  
+  - name: daemon-reload
+    systemd:
+      daemon_reload: yes
