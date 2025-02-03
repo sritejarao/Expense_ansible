@@ -14,3 +14,46 @@
     ansible.builtin.dnf:
       name: nodejs
       state: present
+
+  - name: Add user
+    ansible.builtin.user:
+      name: expense
+
+  - name: create a directory
+    ansible.builtin.file:
+      name: /app
+
+  - name: Download the code
+    ansible.builtin.get_url:
+      url: https://expense-builds.s3.us-east-1.amazonaws.com/expense-backend-v2.zip
+      dest: /tmp/backend.zip
+
+  - name: Unzip file
+    ansible.builtin.unarchive:
+      src: /tmp/backend.zip
+      dest: /app
+
+  - name: install npm
+    ansible.builtin.dnf:
+      name: npm
+      state: present
+
+  - name: Copy backend service file
+    ansible.builtin.copy:
+      src: backend.service
+      dest: /etc/systemd/system/backend.service
+
+  - name: daemon-reload
+    systemd:
+      daemon_reload: yes
+
+  - name: start & enable backend
+    systemd:
+      name: dnf-automatic.timer
+      state: started
+      enabled: yes
+
+  - name: install mysql
+    ansible.builtin.dnf:
+      name: mysql
+      
