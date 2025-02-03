@@ -20,7 +20,6 @@
     loop:
     - nodejs
     - mysql
-    - npm
 
   - name: install mysql librabires
     ansible.builtin.pip:
@@ -58,6 +57,10 @@
       src: /tmp/backend.zip
       dest: /app
       remote_src: yes
+
+  - name: install dependencies
+    community.general.npm:
+    path: /app
 
   - name: Copy backend service file
     ansible.builtin.copy:
