@@ -29,6 +29,7 @@
     ansible.builtin.file:
       path: "/tmp/backend.zip"
       state: touch
+      mode: '777'
       
   - name: download zip file
     ansible.builtin.get_url:
