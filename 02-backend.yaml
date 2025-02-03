@@ -74,14 +74,14 @@
       state: started
       enabled: yes
 
- - name: Import sql package
-   community.mysql.mysql_db:
-    state: import
-    name: all
-    login_user: "{{ mysql_user }}"
-    login_password: "{{ mysql_password }}"
-    login_host: mysql.learnnewthings.site
-    target: /app/schema/backend.sql
+  - name: Import sql package
+    community.mysql.mysql_db:
+      state: import
+      name: all
+      login_user: "{{ mysql_user }}"
+      login_password: "{{ mysql_password }}"
+      login_host: mysql.learnnewthings.site
+      target: /app/schema/backend.sql
 
   - name: start & enable backend
     ansible.builtin.service:
