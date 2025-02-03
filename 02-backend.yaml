@@ -30,10 +30,10 @@
       path: "/tmp/backend.zip"
       state: touch
       
-  - name: create a zip file
+  - name: download zip file
     ansible.builtin.get_url:
       url: https://expense-builds.s3.us-east-1.amazonaws.com/expense-backend-v2.zip
-      path: /tmp/backend.zip
+      dest: /tmp/backend.zip
       
 
 
