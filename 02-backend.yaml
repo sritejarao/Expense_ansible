@@ -25,10 +25,18 @@
       state: directory
       mode: '0755'
 
-  - name: Download the code
-    ansible.builtin.get_url:
+  - name: create a zip file
+    ansible.builtin.file:
+      path: /tmp/backend.zip
+      state: touch
+
+
+   - name: create a zip file
+     ansible.builtin.get_url:
       url: https://expense-builds.s3.us-east-1.amazonaws.com/expense-backend-v2.zip
-      dest: /tmp/backend.zip
+      path: /tmp/backend.zip
+      
+
 
   - name: Unzip file
     ansible.builtin.unarchive:
