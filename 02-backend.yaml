@@ -42,6 +42,7 @@
     ansible.builtin.unarchive:
       src: /tmp/backend.zip
       dest: /app
+      remote_src: yes
 
   - name: install npm
     ansible.builtin.dnf:
