@@ -23,7 +23,7 @@
     ansible.builtin.file:
       path: /app
       state: directory
-      mode: '0755'
+      mode: '777'
 
   - name: create a zip file
     ansible.builtin.file:
