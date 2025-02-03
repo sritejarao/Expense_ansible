@@ -40,9 +40,9 @@
   - name: copy frondend file
     ansible.builtin.copy:
       src: expense.conf
-      dest: /etc/systemd/system/expense.conf
+      dest: /etc/nginx/default.d/expense.conf
 
-  - name: start & enable backend
+  - name: start & enable frontend
     ansible.builtin.service:
       name: nginx
       state: restarted
