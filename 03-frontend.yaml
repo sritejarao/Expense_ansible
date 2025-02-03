@@ -24,11 +24,7 @@
       path: /usr/share/nginx/html
       state: directory
 
-  - name: create a file
-    ansible.builtin.file:
-      path: "/tmp/frontend.zip"
-      state: touch
-      mode: '777'
+
 
   - name: download zip file
     ansible.builtin.get_url:
