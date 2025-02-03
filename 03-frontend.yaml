@@ -14,8 +14,15 @@
       state: started
       enabled: yes
 
-  - name: remove files
-    ansible.builtin.command: rm -rf /usr/share/nginx/html/*
+  - name: remove html directory
+    ansible.builtin.file:
+      path: /usr/share/nginx/html
+      state: absent
+
+   - name: create html directory
+    ansible.builtin.file:
+      path: /usr/share/nginx/html
+      state: directory
 
   - name: create a file
     ansible.builtin.file:
@@ -33,7 +40,7 @@
       src: /tmp/frontend.zip
       dest: /usr/share/nginx/html
       remote_src: yes
-      
+
   - name: copy frondend file
     ansible.builtin.copy:
       src: expense.conf
